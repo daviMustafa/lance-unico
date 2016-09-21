@@ -1,16 +1,15 @@
 package br.com.triadworks.lanceunico.dao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
-import javax.persistence.EntityManager;
-
+import br.com.triadworks.lanceunico.modelo.Cliente;
+import br.com.triadworks.lanceunico.util.JPAUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.triadworks.lanceunico.modelo.Cliente;
-import br.com.triadworks.lanceunico.util.JPAUtil;
+import javax.persistence.EntityManager;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class ClienteDaoTest {
 

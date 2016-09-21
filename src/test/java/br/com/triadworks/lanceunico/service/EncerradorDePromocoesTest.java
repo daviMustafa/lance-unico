@@ -1,25 +1,17 @@
 package br.com.triadworks.lanceunico.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.doThrow;
+import br.com.triadworks.lanceunico.builder.CriadorDePromocao;
+import br.com.triadworks.lanceunico.dao.PromocaoDao;
+import br.com.triadworks.lanceunico.modelo.Promocao;
+import br.com.triadworks.lanceunico.util.DateUtils;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.Test;
-
-import br.com.triadworks.lanceunico.builder.CriadorDePromocao;
-import br.com.triadworks.lanceunico.dao.PromocaoDao;
-import br.com.triadworks.lanceunico.modelo.Promocao;
-import br.com.triadworks.lanceunico.util.DateUtils;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 public class EncerradorDePromocoesTest {
 
 	@Test
@@ -44,9 +36,9 @@ public class EncerradorDePromocoesTest {
 	
 	@Test
 	public void naoDeveEncerrarPromocoesAindaVigentes(){
-		Date ontem = DateUtils.novaData("22/07/2016");
-		Date hoje = DateUtils.novaData("23/07/2016");
-		Date mesPassado = DateUtils.novaData("23/06/2016");
+		Date ontem = DateUtils.novaData("21/09/2016");
+		Date hoje = DateUtils.novaData("22/09/2016");
+		Date mesPassado = DateUtils.novaData("22/08/2016");
 		
 		Promocao ps3 = new CriadorDePromocao().para("Playstation").naData(ontem).cria();
 		Promocao tv = new CriadorDePromocao().para("TV").naData(hoje).cria();

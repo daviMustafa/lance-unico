@@ -16,11 +16,10 @@ public class CadastroDeClientesTest {
 	
 	private static WebDriver driver;
     private static DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-    private static String marionetteDriverLocation;
+    private static String marionetteDriverLocation = "geckodriver";
 
 	@BeforeClass
 	public static void setUp() throws Exception {
-        marionetteDriverLocation = "geckodriver";
         System.setProperty("webdriver.gecko.driver", marionetteDriverLocation);
         capabilities.setCapability("marionette", true);
 		driver = new MarionetteDriver(capabilities);
@@ -39,16 +38,16 @@ public class CadastroDeClientesTest {
 	@Test
 	public void deveAdicionarNovoCliente() {
 		WebElement nome = driver.findElement(By.name("nome"));
-		nome.sendKeys("Felipe");
+		nome.sendKeys("Davi");
 		WebElement email = driver.findElement(By.name("email"));
-		email.sendKeys("felipe@gmail.com");
+		email.sendKeys("davi@gmail.com");
 		
 		WebElement botao = driver.findElement(By.id("btn-salvar"));
 		botao.click();
 	
 		String html = driver.getPageSource();
-		assertTrue(html.contains("Felipe"));
-		assertTrue(html.contains("felipe@gmail.com"));
+		assertTrue(html.contains("Davi"));
+		assertTrue(html.contains("davi@gmail.com"));
 	}
 	
 	@Test
@@ -62,8 +61,7 @@ public class CadastroDeClientesTest {
 		String html = driver.getPageSource();
 		assertTrue(html.contains("Email: campo é obrigatório"));
 	}
-	
-	
+
 	@Test
 	public void naoDeveAdicionarNovoClienteSemEmailENome(){
 		WebElement botao = driver.findElement(By.id("btn-salvar"));

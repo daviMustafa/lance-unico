@@ -16,7 +16,7 @@ public class PesquisaNoGoogle {
 
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 
-        String marionetteDriverLocation = "/home/davi.oliveira/workspaceEstudo/lance-unico/geckodriver";
+        String marionetteDriverLocation = "geckodriver";
         System.setProperty("webdriver.gecko.driver", marionetteDriverLocation);
         capabilities.setCapability("marionette", true);
 		WebDriver driver = new MarionetteDriver(capabilities);
