@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/pages/templates/template_padrao.xhtml">
+	
+	<ui:define name="conteudo">
+	
+		<f:metadata>
+			<f:viewParam name="id" value="#{id}" required="true" />
+			<f:viewAction action="#{clientesBean.edita(id)}" />
+		</f:metadata>
+	
+		<div id="container" align="left">
+			<h1>Editar Cliente</h1>
+			
+			<h:form prependId="false">
+				<h:inputHidden id="id" value="#{clientesBean.cliente.id}" />
+			
+		        <h:outputLabel value="Nome" for="nome" />
+				<h:inputText id="nome" styleClass="texto-longo"
+					value="#{clientesBean.cliente.nome}" pt:autofocus="autofocus"
+					label="Nome" required="true" />
+					
+				<h:outputLabel value="Email" for="email" />
+				<h:inputText id="email" styleClass="texto-longo"
+					value="#{clientesBean.cliente.email}" 
+					label="Email" required="true" />
+
+				<div class="acoes-principais">
+					<h:link value="Voltar" outcome="lista"/>
+					&#160;
+					<h:commandButton value="Salvar" action="#{clientesBean.atualiza}" />
+				</div>
+			</h:form>
+			
+		</div>
+	</ui:define>
+		
+</ui:composition>

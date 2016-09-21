@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/pages/templates/template_padrao.xhtml">
+	
+	<ui:define name="conteudo">
+		<div id="container" align="left">
+			<h1>Promoções</h1>
+			<h:form prependId="false">
+			
+				<div class="acoes-principais">
+					<h:link value="Novo" outcome="novo" />
+					&#160;
+					<h:button value="Listar" outcome="lista"/>
+				</div>
+			
+				<h:dataTable
+					id="tabela" 
+					value="#{promocoesBean.promocoes}"
+					var="promocao" styleClass="dados"
+					rowClasses="odd, even">
+ 					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Nome da promoção" />
+						</f:facet>
+						#{promocao.nome}
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Valor máximo" />
+						</f:facet>
+						<h:outputText value="#{promocao.valorMaximo}" styleClass="money">
+							<f:convertNumber locale="pt_BR" minFractionDigits="2" type="currency" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Entrega em" />
+						</f:facet>
+						#{promocao.entrega}
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="$$$" />
+						</f:facet>
+						#{promocao.receberEmDinheiro ? 'Sim' : 'Não'}
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Data" />
+						</f:facet>
+						<h:outputText value="#{promocao.data}">
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Ações" />
+						</f:facet>
+						<h:link value="gerenciar" outcome="lances">
+							<f:param name="id" value="#{promocao.id}" />
+						</h:link>
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
+	</ui:define>
+		
+</ui:composition>

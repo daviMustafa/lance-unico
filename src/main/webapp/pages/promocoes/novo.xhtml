@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/pages/templates/template_padrao.xhtml">
+	
+	<ui:define name="conteudo">
+		<div id="container" align="left">
+			<h1>Nova Promoção</h1>
+			
+			<h:form prependId="false">
+		        <h:outputLabel value="Nome" for="nome" />
+				<h:inputText id="nome" styleClass="texto-longo"
+					value="#{promocoesBean.promocao.nome}" pt:autofocus="autofocus"
+					label="Nome" required="true" />
+					
+				<h:outputLabel value="Valor máximo do lance" for="valor" />
+				<h:inputText id="valor"
+					value="#{promocoesBean.promocao.valorMaximo}" 
+					label="Valor máximo" required="true">
+					<f:convertNumber locale="pt_BR" maxFractionDigits="2" minFractionDigits="2" />
+				</h:inputText>
+				
+				<h:outputLabel value="Receber em dinheiro?" for="dinheiro" />
+				<h:selectBooleanCheckbox id="dinheiro" label="Receber em dinheiro?"
+					value="#{promocoesBean.promocao.receberEmDinheiro}" />
+				
+				<h:outputLabel value="Local de entrega" for="entrega" />
+				<h:selectOneMenu id="entrega" value="#{promocoesBean.promocao.entrega}"
+					required="true" label="Local de entrega">
+					<f:selectItem itemLabel="Selecione um local de entrega" noSelectionOption="true" />
+					<f:selectItem itemLabel="Loja" itemValue="LOJA" />
+					<f:selectItem itemLabel="Residência do cliente" itemValue="RESIDENCIA" />
+				</h:selectOneMenu>
+				
+				<div class="acoes-principais">
+					<h:link value="Voltar" outcome="lista"/>
+					&#160;
+					<h:commandButton id="btn-salvar" value="Salvar" action="#{promocoesBean.salva}" />
+				</div>
+			</h:form>
+			
+		</div>
+	</ui:define>
+		
+</ui:composition>
